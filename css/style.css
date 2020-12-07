@@ -888,6 +888,20 @@ body.ie ._ibg img {
           align-items: center;
   height: 85px;
   position: relative;
+  -webkit-transform: translate(0, -100%);
+      -ms-transform: translate(0, -100%);
+          transform: translate(0, -100%);
+  opacity: 0;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.header__content._active {
+  -webkit-transform: translate(0, 0);
+      -ms-transform: translate(0, 0);
+          transform: translate(0, 0);
+  opacity: 1;
 }
 
 .menu__list {
@@ -975,6 +989,20 @@ body.ie ._ibg img {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-transform: translate(0, 50px);
+      -ms-transform: translate(0, 50px);
+          transform: translate(0, 50px);
+  opacity: 0;
+  -webkit-transition: all 2s cubic-bezier(0.03, 0.96, 0.99, 0.96);
+  -o-transition: all 2s cubic-bezier(0.03, 0.96, 0.99, 0.96);
+  transition: all 2s cubic-bezier(0.03, 0.96, 0.99, 0.96);
+}
+
+.footer__row._active {
+  -webkit-transform: translate(0, 0);
+      -ms-transform: translate(0, 0);
+          transform: translate(0, 0);
+  opacity: 1;
 }
 
 .footer__column {
@@ -1064,6 +1092,20 @@ body.ie ._ibg img {
 
 .block__icon {
   margin: 0px 0px 34px 0px;
+  -webkit-transform: translate(0, -100px);
+      -ms-transform: translate(0, -100px);
+          transform: translate(0, -100px);
+  opacity: 0;
+  -webkit-transition: all 1.2s ease;
+  -o-transition: all 1.2s ease;
+  transition: all 1.2s ease;
+}
+
+.block__icon._active {
+  -webkit-transform: translate(0, 0);
+      -ms-transform: translate(0, 0);
+          transform: translate(0, 0);
+  opacity: 1;
 }
 
 .block__title {
@@ -1072,10 +1114,31 @@ body.ie ._ibg img {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 3.6px;
+  -webkit-transform: translate(0, -100px);
+      -ms-transform: translate(0, -100px);
+          transform: translate(0, -100px);
+  opacity: 0;
+  -webkit-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+.block__title._active {
+  -webkit-transform: translate(0, 0);
+      -ms-transform: translate(0, 0);
+          transform: translate(0, 0);
+  opacity: 1;
 }
 
 .block__text {
   line-height: 34px;
+  -webkit-transform: translate(0, 100px);
+      -ms-transform: translate(0, 100px);
+          transform: translate(0, 100px);
+  opacity: 0;
+  -webkit-transition: all 1.8s ease;
+  -o-transition: all 1.8s ease;
+  transition: all 1.8s ease;
 }
 
 .block__text--j {
@@ -1092,6 +1155,13 @@ body.ie ._ibg img {
   height: 1px;
   left: 50%;
   background-color: #ebebeb;
+}
+
+.block__text._active {
+  -webkit-transform: translate(0, 0);
+      -ms-transform: translate(0, 0);
+          transform: translate(0, 0);
+  opacity: 1;
 }
 
 .brands {
@@ -1121,6 +1191,37 @@ body.ie ._ibg img {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 66.667%;
           flex: 0 0 66.667%;
+  -webkit-transform: translate(-100%, 0);
+      -ms-transform: translate(-100%, 0);
+          transform: translate(-100%, 0);
+  opacity: 0;
+  -webkit-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+.brands__column--b._active {
+  -webkit-transform: translate(0, 0);
+      -ms-transform: translate(0, 0);
+          transform: translate(0, 0);
+  opacity: 1;
+}
+
+.brands__column--r {
+  -webkit-transform: translate(0, 200px);
+      -ms-transform: translate(0, 200px);
+          transform: translate(0, 200px);
+  opacity: 0;
+  -webkit-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+.brands__column--r._active {
+  -webkit-transform: translate(0, 0);
+      -ms-transform: translate(0, 0);
+          transform: translate(0, 0);
+  opacity: 1;
 }
 
 .brands__content {
@@ -1296,6 +1397,20 @@ body.ie ._ibg img {
   -webkit-box-flex: 0;
       -ms-flex: 0 1 50%;
           flex: 0 1 50%;
+  -webkit-transform: translate(0, 100px);
+      -ms-transform: translate(0, 100px);
+          transform: translate(0, 100px);
+  opacity: 0;
+  -webkit-transition: all 1.6s ease;
+  -o-transition: all 1.6s ease;
+  transition: all 1.6s ease;
+}
+
+.block-shop__column._active {
+  -webkit-transform: translate(0, 0);
+      -ms-transform: translate(0, 0);
+          transform: translate(0, 0);
+  opacity: 1;
 }
 
 .block-shop__item {
@@ -1331,6 +1446,20 @@ body.ie ._ibg img {
   font-style: italic;
   line-height: 34px;
   margin: 0px 0px 35px 0px;
+  -webkit-transform: translate(0, 40px);
+      -ms-transform: translate(0, 40px);
+          transform: translate(0, 40px);
+  opacity: 0;
+  -webkit-transition: all 5s ease;
+  -o-transition: all 5s ease;
+  transition: all 5s ease;
+}
+
+.subscribe__label._active {
+  -webkit-transform: translate(0, 0);
+      -ms-transform: translate(0, 0);
+          transform: translate(0, 0);
+  opacity: 1;
 }
 
 .subscribe__form {
@@ -1369,6 +1498,27 @@ body.ie ._ibg img {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 126px;
           flex: 0 0 126px;
+  -webkit-transform: translate(40px, 0px);
+      -ms-transform: translate(40px, 0px);
+          transform: translate(40px, 0px);
+  opacity: 0;
+  -webkit-transition: all 2s cubic-bezier(0.03, 0.96, 0.99, 0.96);
+  -o-transition: all 2s cubic-bezier(0.03, 0.96, 0.99, 0.96);
+  transition: all 2s cubic-bezier(0.03, 0.96, 0.99, 0.96);
+}
+
+.subscribe__button._active {
+  -webkit-transform: translate(0, 0);
+      -ms-transform: translate(0, 0);
+          transform: translate(0, 0);
+  opacity: 1;
+}
+
+.subscribe__button._active {
+  -webkit-transform: translate(0, 0);
+      -ms-transform: translate(0, 0);
+          transform: translate(0, 0);
+  opacity: 1;
 }
 
 .subscribe__btn {
@@ -1540,6 +1690,20 @@ body.ie ._ibg img {
 
   .header {
     top: 15px;
+  }
+
+  .header__content {
+    -webkit-transform: none;
+        -ms-transform: none;
+            transform: none;
+    opacity: 1;
+  }
+
+  .header__content._active {
+    -webkit-transform: none;
+        -ms-transform: none;
+            transform: none;
+    opacity: 1;
   }
 
   .menu__logo {
@@ -1728,6 +1892,12 @@ body.ie ._ibg img {
     padding: 35px 0px;
   }
 
+  .block-shop__column {
+    -webkit-transform: translate(0, 30px);
+        -ms-transform: translate(0, 30px);
+            transform: translate(0, 30px);
+  }
+
   .subscribe__body {
     padding: 30px 0px 30px 0px;
   }
@@ -1738,6 +1908,21 @@ body.ie ._ibg img {
 
   .subscribe__label {
     margin: 0px 0px 15px 0px;
+  }
+
+  .subscribe__label {
+    -webkit-transform: translate(0, 20px);
+        -ms-transform: translate(0, 20px);
+            transform: translate(0, 20px);
+    -webkit-transition: all 2s ease;
+    -o-transition: all 2s ease;
+    transition: all 2s ease;
+  }
+
+  .subscribe__button {
+    -webkit-transform: translate(0, 30px);
+        -ms-transform: translate(0, 30px);
+            transform: translate(0, 30px);
   }
 }
 

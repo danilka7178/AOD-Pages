@@ -393,6 +393,7 @@ if (location.hash) {
 //=================
 //Menu
 let iconMenu = document.querySelector(".icon-menu");
+let menuLinks = document.querySelectorAll(".menu__link");
 if (iconMenu != null) {
 	let delay = 500;
 	let menuBody = document.querySelector(".menu__body");
@@ -404,6 +405,19 @@ if (iconMenu != null) {
 		}
 	});
 };
+
+for (let menuLink of menuLinks) {
+	menuLink.addEventListener('click', function (e) {
+		let iconMenu = document.querySelector(".icon-menu");
+		let menuBody = document.querySelector(".menu__body");
+		let body = document.querySelector("body");
+		iconMenu.classList.remove("_active");
+		menuBody.classList.remove("_active");
+		body.classList.remove("_lock");
+	});
+};
+
+
 function menu_close() {
 	let iconMenu = document.querySelector(".icon-menu");
 	let menuBody = document.querySelector(".menu__body");

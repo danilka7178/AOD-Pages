@@ -63,65 +63,275 @@ if (sliderScrollItems.length > 0) {
 function sliders_bild_callback(params) { }
 
 let sliderReviews = new Swiper('.reviews__block', {
-	/*
-	effect: 'fade',
-	autoplay: {
-		delay: 3000,
-		disableOnInteraction: false,
-	},
-	*/
-	observer: true,
-	observeParents: true,
-	slidesPerView: 1,
-	spaceBetween: 0,
-	autoHeight: true,
-	speed: 800,
-	//touchRatio: 0,
-	//simulateTouch: false,
-	//loop: true,
-	//preloadImages: false,
-	//lazy: true,
-	// Dotts
+	//! Часто исп. настройки
+	observer: true, //? Обнов. свайпер, при изм. эл. слайдера
+	observeParents: true, //? Обнов. свайпер, при изм. род. эл. слайдера
+	// observeSlideChildren: true, //? Обнов. свайпер при изм. дочерн. эл. слайда
+
+	slidesPerView: 1, //? Кол. слайдов для показа (2.1, 2.2.. тоже работает)
+	spaceBetween: 400, //? Отступ между слайдами
+	autoHeight: true, //? Автовысота
+	speed: 800, //? Скорость
+	// touchRatio: 0, //? Чув-ть свайпа
+	// simulateTouch: false, //? Вкл./откл. перетаскивания на ПК
+	loop: true, //? Бесконечный слайдер (Откл. скролл, не работает с мультирядностью, фикс. кол-во в slidesPerView)
+	preloadImages: false, //? Откл. предзагрузку картинок
+	lazy: true, //? (подгрузка картинок)
+
+	//! Стрелки
+	// navigation: {
+	// 	nextEl: '.swiper-button-next',
+	// 	prevEl: '.swiper-button-prev'
+	// },
+
+	//! Навигация 
+	//? Буллеты, тек. положение, прогрессбар
 	pagination: {
-		el: '.slider-quality__pagging',
-		clickable: true,
+		el: '.swiper-pagination',
+		type: 'bullets', //? Буллеты
+		clickable: true, //? Можно ли нажать на буллет
+		// dynamicBullets: true, //? Динамич. буллеты
+		//? Кастомные буллеты
+		/* renderBullet: function (index, className) {
+			return '<span class="' + className + '">' + (index + 1) + '</span>';
+		}, */
+
+		/* type: 'fraction', //? Фракция
+		//? Кастомный вывод фракции
+		renderFraction: function (currentClass, totalClass) {
+			return 'Фото <span class="' + currentClass + '"></span>' +
+				' из ' +
+				'<span class="' + totalClass + '"></span>';
+		}, */
+
+		//type: 'progressbar' //? Прогрессбар
 	},
-	// Arrows
-	navigation: {
-		nextEl: '.about__more .more__item_next',
-		prevEl: '.about__more .more__item_prev',
+
+	//! Скролл
+	/* scrollbar: {
+		el: '.swiper-scrollbar',
+		draggable: true //? Возможность перетаскивать скролл
+	}, */
+
+	//!Брейкпоинты (адаптив)
+	//? Ширина экрана
+	/* breakpoints: {
+	320: {
+		slidesPerView: 1,
+		spaceBetween: 0,
+		autoHeight: true,
+	}
+	
+	768: {
+		slidesPerView: 2,
+		spaceBetween: 20,
 	},
-	/*
-	breakpoints: {
-		320: {
+	992: {
+		slidesPerView: 3,
+		spaceBetween: 20,
+	},
+	1268: {
+		slidesPerView: 4,
+		spaceBetween: 30,
+	},
+}, */
+
+	//? Соотношение сторон
+	/* breakpoints: {
+		'@0.75': {
 			slidesPerView: 1,
-			spaceBetween: 0,
-			autoHeight: true,
 		},
-		768: {
+		'@1.00': {
 			slidesPerView: 2,
-			spaceBetween: 20,
 		},
-		992: {
+		'@1.50': {
 			slidesPerView: 3,
-			spaceBetween: 20,
-		},
-		1268: {
-			slidesPerView: 4,
-			spaceBetween: 30,
-		},
-	},
-	*/
+		}
+	}, */
+
+	//? Хз для чего, но оставить стоит
 	on: {
 		lazyImageReady: function () {
 			ibg();
 		},
-	}
-	// And if we need scrollbar
-	//scrollbar: {
-	//	el: '.swiper-scrollbar',
-	//},
+	},
+
+	//! Настройки
+	// touchAngle: 45, //? Угол срабатывания свайпа/перетаскивания
+	// grabCursor: true, //? Курсор перетаскивания
+	// slideToClickedSlide: false, //? Перекл. при клике на слайд
+
+	//? Навигация по хешу
+	/* hashNavigation: {
+		watchState: true, //? Отслеж. состояние
+	}, */
+
+	//? Управление клавиатурой
+	/* keyboard: {
+		enabled: true, //? Вкл.\выкл.
+		onlyInViewport: true, //? Вкл.\выкл., только когда слайдер в пределах вьюпорта
+		pageUpDown: true, //? Вкл.\выкл. управл. клав. pageUp, pageDown
+	}, */
+
+	//? Управление колесом мыши
+	/* mousewheel: {
+		sensitivity: 1, //? Чувств. колеса мыши
+		//eventsTarget: ".image-slider" //? Класс объекта на котором будет сраб. прокр. мышью.
+	}, */
+
+	// watchOverflow: true, //? Откл. функционала, если слайдов мен. чем нужно
+	// slidesPerGroup: 1, //? Количество пролистываемых слайдов
+	// centeredSlides: false, //? Активный слайд по центру
+	// initialSlide: 0, //? Стартовый слайд
+	// slidesPerColumn: 1, //? Мультирядность (обяз. отключить автовысоту!)
+	// loopedSlides: 0, //? Кол-во дублирующих слайдов
+	// freeMode: true, //? Свободный режим (Нет фиксации на слайде)
+
+	//! Автопрокрутка
+	autoplay: {
+		delay: 6000, //? Пауза между прокруткой
+		stopOnLastSlide: true, //? Закончить на последнем слайде
+		disableOnInteraction: true //? Отключить после ручного переключения
+	},
+
+	// direction: 'horizontal', //? Вертикальный слайдер
+
+	//! Эффекты переключения слайдов.
+	effect: 'slide', //? Листание (по-умолчанию)
+
+	/* effect: 'fade', //? Cмена прозрачности
+	fadeEffect: {
+		crossFade: true //? Параллельная смена прозрачности
+	}, */
+
+	// effect: 'flip', //? Переворот
+	/* flipEffect: {
+		slideShadows: true, //? Тень
+		limitRotation: true //? Показ только активного слайда
+	}, */
+
+	// effect: 'cube', //? Куб (В стилях огр. ширину всего слайдера)
+	/* cubeEffect: {
+		//? Настройки тени
+		slideShadows: true, 
+		shadow: true,
+		shadowOffset: 20,
+		shadowScale: 0.94
+	}, */
+
+	// effect: 'coverflow', //? Эффект потока (slidesPerView не меньше 3)
+	/* coverflowEffect: {
+		rotate: 20, //? Угол
+		stretch: 50, //? Наложение
+		slideShadows: true, //? Тень
+	}, */
+
+	//! Lazy Loading (подгрузка картинок)
+	// preloadImages: false, //? Отключить предзагрузка картинок
+	/* lazy: {
+		loadOnTransitionStart: false, //? Подгружать на старте переключения слайда
+		loadPrevNext: false, //? Подгрузить предыдущую и следующую картинки
+	},*/
+	// watchSlidesProgress: true, //? Слежка за видимыми слайдами
+	// watchSlidesVisibility: true, //? Добавление класса видимым слайдам
+
+	//! Зум картинки
+	/* zoom: {
+		maxRatio: 5, //? Макимальное увеличение
+		minRatio: 1, //? Минимальное увеличение
+	}, */
+
+	//! Миниатюры (превью)
+	/* thumbs: {
+		//? Свайпер с мениатюрами и его настройки
+		swiper: {
+			el: '.image-mini-slider',
+			slidesPerView: 5,
+		}
+	}, */
+
+	//! Передача управления (только в 1 сторону, то есть при изм. А меняются А и Б, при изм. Б только Б)
+	/* controller: {
+		control: myTextSlider
+	}, */
+
+	// observer: true, //? Обновить свайпер при изменении элементов слайдера
+	// observeParents: true, //? Обновить свайпер при изменении родительских элементов слайдера
+
 });
+
+
+//! Слайдер в слайдере
+/* new Swiper('.image-in-slider', {
+	grabCursor: true, //? Курсор перетаскивания
+	pagination: { //? Навигация пагинация, текущее положение, прогрессбар
+		el: '.swiper-pagination',
+		clickable: true, //? Буллеты
+	},
+	nested: true, //? Корректная работа перетаскивания\свайпа для дочернего слайдера
+}); */
+
+//! Еще один слайдер (Склейка 2 слайдеров, при изм. А меняются А и Б, при изм. Б меняются Б и А)
+/*
+let myTextSlider = new Swiper('.text-slider', {
+	slidesPerView: 3, //? Количество слайдов для показа
+	spaceBetween: 30, //? Отступ между слайдами
+});
+
+myImageSlider.controller.control = myTextSlider; //? Передача управления myImageSlider - 1ый слайдер
+myTextSlider.controller.control = myImageSlider; //? Передача управления myTextSlider - 2ой слайдер
+*/
+
+//! Параллакс слайдер
+/* new Swiper('.parallax-slider', {
+	parallax: true, //? Включаем параллакс
+	speed: 2000, //? скорость переключения
+	navigation: { //? Стрелки
+		nextEl: '.swiper-button-next',
+		prevEl: '.swiper-button-prev'
+	},
+}); */
+
+//! Параметры
+/*
+let qSlides = myImageSlider.slides.length; //? Получение
+myImageSlider.params.speed = 3000; //? Изменение
+*/
+
+//! Методы
+/*
+myImageSlider.update(); //? Обновить слайдер
+myImageSlider.slideTo(2, 800); //? Переключится на слайд 2, скорость 800
+*/
+
+//! События
+//? Событие смены слайда
+/* myImageSlider.on('slideChange', function () {
+	console.log('Слайд переключен');
+}); */
+
+//? Запуск автоппрокрутки при наведении
+/* let sliderBlock = document.querySelector('.image-slider');
+sliderBlock.addEventListener("mouseenter", function (e) {
+	myImageSlider.params.autoplay.disableOnInteraction = false; //? myImageSlider - это перем. кот. присв. слайдер
+	myImageSlider.params.autoplay.delay = 500; //? myImageSlider - это перем. кот. присв. слайдер
+	myImageSlider.autoplay.start(); //? myImageSlider - это перем. кот. присв. слайдер
+});
+sliderBlock.addEventListener("mouseleave", function (e) {
+	myImageSlider.autoplay.stop();
+}); */
+
+//! Фракция (для вывода вместе с прогрессбаром)
+/*
+let mySliderAllSlides = document.querySelector('.image-slider__total');
+let mySliderCurrentSlide = document.querySelector('.image-slider__current');
+
+mySliderAllSlides.innerHTML = myImageSlider.slides.length;
+
+myImageSlider.on('slideChange', function () {
+	let currentSlide = ++myImageSlider.realIndex;
+	mySliderCurrentSlide.innerHTML = currentSlide;
+}); */
 
 
 var ua = window.navigator.userAgent;
@@ -1116,4 +1326,417 @@ if (priceSlider) {
 		}
 		priceSlider.noUiSlider.set([priceStartValue, priceEndValue]);
 	}
+}
+let scr_body = document.querySelector('body');
+let scr_blocks = document.querySelectorAll('._scr-sector');
+let scr_items = document.querySelectorAll('._scr-item');
+let scr_fix_block = document.querySelectorAll('._side-wrapper');
+let scr_min_height = 750;
+
+let scrolling = true;
+let scrolling_full = true;
+
+let scrollDirection = 0;
+
+//ScrollOnScroll
+window.addEventListener('scroll', scroll_scroll);
+function scroll_scroll() {
+	//scr_body.setAttribute('data-scroll', pageYOffset);
+	let src_value = pageYOffset;
+	let header = document.querySelector('header.header');
+	if (header !== null) {
+		if (src_value > 10) {
+			header.classList.add('_scroll');
+		} else {
+			header.classList.remove('_scroll');
+		}
+	}
+	if (scr_blocks.length > 0) {
+		for (let index = 0; index < scr_blocks.length; index++) {
+			let block = scr_blocks[index];
+			let block_offset = offset(block).top;
+			let block_height = block.offsetHeight;
+
+			if ((pageYOffset > block_offset - window.innerHeight / 1.5) && pageYOffset < (block_offset + block_height) - window.innerHeight / 5) {
+				block.classList.add('_scr-sector_active');
+			} else {
+				if (block.classList.contains('_scr-sector_active')) {
+					block.classList.remove('_scr-sector_active');
+				}
+			}
+			if ((pageYOffset > block_offset - window.innerHeight / 2) && pageYOffset < (block_offset + block_height) - window.innerHeight / 5) {
+				if (!block.classList.contains('_scr-sector_current')) {
+					block.classList.add('_scr-sector_current');
+				}
+			} else {
+				if (block.classList.contains('_scr-sector_current')) {
+					block.classList.remove('_scr-sector_current');
+				}
+			}
+		}
+	}
+	if (scr_items.length > 0) {
+		for (let index = 0; index < scr_items.length; index++) {
+			let scr_item = scr_items[index];
+			let scr_item_offset = offset(scr_item).top;
+			let scr_item_height = scr_item.offsetHeight;
+
+
+			let scr_item_point = window.innerHeight - (window.innerHeight - scr_item_height / 3);
+			if (window.innerHeight > scr_item_height) {
+				scr_item_point = window.innerHeight - scr_item_height / 3;
+			}
+
+			if ((src_value > scr_item_offset - scr_item_point) && src_value < (scr_item_offset + scr_item_height)) {
+				scr_item.classList.add('_active');
+				scroll_load_item(scr_item);
+			} else {
+				scr_item.classList.remove('_active');
+			}
+			if (((src_value > scr_item_offset - window.innerHeight))) {
+				if (scr_item.querySelectorAll('._lazy').length > 0) {
+					scroll_lazy(scr_item);
+				}
+			}
+		}
+	}
+
+	if (scr_fix_block.length > 0) {
+		fix_block(scr_fix_block, src_value);
+	}
+	let custom_scroll_line = document.querySelector('._custom-scroll__line');
+	if (custom_scroll_line) {
+		let window_height = window.innerHeight;
+		let content_height = document.querySelector('.wrapper').offsetHeight;
+		let scr_procent = (pageYOffset / (content_height - window_height)) * 100;
+		let custom_scroll_line_height = custom_scroll_line.offsetHeight;
+		custom_scroll_line.style.transform = "translateY(" + (window_height - custom_scroll_line_height) / 100 * scr_procent + "px)";
+	}
+
+	if (src_value > scrollDirection) {
+		// downscroll code
+	} else {
+		// upscroll code
+	}
+	scrollDirection = src_value <= 0 ? 0 : src_value;
+}
+setTimeout(function () {
+	//document.addEventListener("DOMContentLoaded", scroll_scroll);
+	scroll_scroll();
+}, 100);
+
+function scroll_lazy(scr_item) {
+	let lazy_src = scr_item.querySelectorAll('*[data-src]');
+	if (lazy_src.length > 0) {
+		for (let index = 0; index < lazy_src.length; index++) {
+			const el = lazy_src[index];
+			if (!el.classList.contains('_loaded')) {
+				el.setAttribute('src', el.getAttribute('data-src'));
+				el.classList.add('_loaded');
+			}
+		}
+	}
+	let lazy_srcset = scr_item.querySelectorAll('*[data-srcset]');
+	if (lazy_srcset.length > 0) {
+		for (let index = 0; index < lazy_srcset.length; index++) {
+			const el = lazy_srcset[index];
+			if (!el.classList.contains('_loaded')) {
+				el.setAttribute('srcset', el.getAttribute('data-srcset'));
+				el.classList.add('_loaded');
+			}
+		}
+	}
+}
+
+function scroll_load_item(scr_item) {
+	if (scr_item.classList.contains('_load-map') && !scr_item.classList.contains('_loaded-map')) {
+		let map_item = document.getElementById('map');
+		if (map_item) {
+			scr_item.classList.add('_loaded-map');
+			map();
+		}
+	}
+}
+
+//FullScreenScroll
+if (scr_blocks.length > 0 && !isMobile.any()) {
+	disableScroll();
+	window.addEventListener('wheel', full_scroll);
+}
+function full_scroll(e) {
+	let viewport_height = window.innerHeight;
+	if (viewport_height >= scr_min_height) {
+		if (scrolling_full) {
+			// ВЫЧИСЛИТЬ!!!
+			let current_scroll = pageYOffset;//parseInt(scr_body.getAttribute('data-scroll'));
+			//
+			let current_block = document.querySelector('._scr-sector._scr-sector_current');
+			let current_block_pos = offset(current_block).top;
+			let current_block_height = current_block.offsetHeight;
+			let current_block_next = current_block.nextElementSibling;
+			let current_block_prev = current_block.previousElementSibling;
+			let block_pos;
+			if (e.keyCode == 40 || e.keyCode == 34 || e.deltaX > 0 || e.deltaY < 0) {
+				if (current_block_prev) {
+					let current_block_prev_height = current_block_prev.offsetHeight;
+					block_pos = offset(current_block_prev).top;
+					if (current_block_height <= viewport_height) {
+						if (current_block_prev_height >= viewport_height) {
+							block_pos = block_pos + (current_block_prev_height - viewport_height);
+							full_scroll_to_sector(block_pos);
+						}
+					} else {
+						enableScroll();
+						if (current_scroll <= current_block_pos) {
+							full_scroll_to_sector(block_pos);
+						}
+					}
+				} else {
+					full_scroll_pagestart();
+				}
+			} else if (e.keyCode == 38 || e.keyCode == 33 || e.deltaX < 0 || e.deltaY > 0) {
+				if (current_block_next) {
+					block_pos = offset(current_block_next).top;
+					if (current_block_height <= viewport_height) {
+						full_scroll_to_sector(block_pos);
+					} else {
+						enableScroll();
+						if (current_scroll >= block_pos - viewport_height) {
+							full_scroll_to_sector(block_pos);
+						}
+					}
+				} else {
+					full_scroll_pageend();
+				}
+			}
+		} else {
+			disableScroll();
+		}
+	} else {
+		enableScroll();
+	}
+}
+function full_scroll_to_sector(pos) {
+	disableScroll();
+	scrolling_full = false;
+	_goto(pos, 800);
+
+	let scr_pause = 500;
+	if (navigator.appVersion.indexOf("Mac") != -1) {
+		scr_pause = 1000;
+	};
+	setTimeout(function () {
+		scrolling_full = true;
+	}, scr_pause);
+}
+function full_scroll_pagestart() { }
+function full_scroll_pageend() { }
+
+//ScrollOnClick (Navigation)
+let link = document.querySelectorAll('._goto-block');
+if (link) {
+	let blocks = [];
+	for (let index = 0; index < link.length; index++) {
+		let el = link[index];
+		let block_name = el.getAttribute('href').replace('#', '');
+		if (block_name != '' && !~blocks.indexOf(block_name)) {
+			blocks.push(block_name);
+		}
+		el.addEventListener('click', function (e) {
+			if (document.querySelector('.menu__body._active')) {
+				menu_close();
+				body_lock_remove(500);
+			}
+			let target_block_class = el.getAttribute('href').replace('#', '');
+			let target_block = document.querySelector('.' + target_block_class);
+			_goto(target_block, 300);
+			e.preventDefault();
+		})
+	}
+
+	window.addEventListener('scroll', function (el) {
+		let old_current_link = document.querySelectorAll('._goto-block._active');
+		if (old_current_link) {
+			for (let index = 0; index < old_current_link.length; index++) {
+				let el = old_current_link[index];
+				el.classList.remove('_active');
+			}
+		}
+		for (let index = 0; index < blocks.length; index++) {
+			let block = blocks[index];
+			let block_item = document.querySelector('.' + block);
+			if (block_item) {
+				let block_offset = offset(block_item).top;
+				let block_height = block_item.offsetHeight;
+				if ((pageYOffset > block_offset - window.innerHeight / 3) && pageYOffset < (block_offset + block_height) - window.innerHeight / 3) {
+					let current_links = document.querySelectorAll('._goto-block[href="#' + block + '"]');
+					for (let index = 0; index < current_links.length; index++) {
+						let current_link = current_links[index];
+						current_link.classList.add('_active');
+					}
+				}
+			}
+		}
+	})
+}
+//ScrollOnClick (Simple)
+let goto_links = document.querySelectorAll('._goto');
+if (goto_links) {
+	for (let index = 0; index < goto_links.length; index++) {
+		let goto_link = goto_links[index];
+		goto_link.addEventListener('click', function (e) {
+			let target_block_class = goto_link.getAttribute('href').replace('#', '');
+			let target_block = document.querySelector('.' + target_block_class);
+			_goto(target_block, 300);
+			e.preventDefault();
+		});
+	}
+}
+function _goto(target_block, speed, offset = 0) {
+	let header = '';
+	//OffsetHeader
+	//if (window.innerWidth < 992) {
+	//	header = 'header';
+	//}
+	let options = {
+		speedAsDuration: true,
+		speed: speed,
+		header: header,
+		offset: offset,
+		easing: 'easeOutQuad',
+	};
+	let scr = new SmoothScroll();
+	scr.animateScroll(target_block, '', options);
+}
+
+//SameFunctions
+function offset(el) {
+	var rect = el.getBoundingClientRect(),
+		scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+		scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+	return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
+}
+function disableScroll() {
+	if (window.addEventListener) // older FF
+		window.addEventListener('DOMMouseScroll', preventDefault, false);
+	document.addEventListener('wheel', preventDefault, { passive: false }); // Disable scrolling in Chrome
+	window.onwheel = preventDefault; // modern standard
+	window.onmousewheel = document.onmousewheel = preventDefault; // older browsers, IE
+	window.ontouchmove = preventDefault; // mobile
+	document.onkeydown = preventDefaultForScrollKeys;
+}
+function enableScroll() {
+	if (window.removeEventListener)
+		window.removeEventListener('DOMMouseScroll', preventDefault, false);
+	document.removeEventListener('wheel', preventDefault, { passive: false }); // Enable scrolling in Chrome
+	window.onmousewheel = document.onmousewheel = null;
+	window.onwheel = null;
+	window.ontouchmove = null;
+	document.onkeydown = null;
+}
+function preventDefault(e) {
+	e = e || window.event;
+	if (e.preventDefault)
+		e.preventDefault();
+	e.returnValue = false;
+}
+function preventDefaultForScrollKeys(e) {
+	/*if (keys[e.keyCode]) {
+		preventDefault(e);
+		return false;
+	}*/
+}
+
+function fix_block(scr_fix_block, scr_value) {
+	let window_width = parseInt(window.innerWidth);
+	let window_height = parseInt(window.innerHeight);
+	let header_height = parseInt(document.querySelector('header').offsetHeight) + 15;
+	for (let index = 0; index < scr_fix_block.length; index++) {
+		const block = scr_fix_block[index];
+		let block_width = block.getAttribute('data-width');
+		const item = block.querySelector('._side-block');
+		if (!block_width) { block_width = 0; }
+		if (window_width > block_width) {
+			if (item.offsetHeight < window_height - (header_height + 30)) {
+				if (scr_value > offset(block).top - (header_height + 15)) {
+					item.style.cssText = "position:fixed;bottom:auto;top:" + header_height + "px;width:" + block.offsetWidth + "px;left:" + offset(block).left + "px;";
+				} else {
+					gotoRelative(item);
+				}
+				if (scr_value > (block.offsetHeight + offset(block).top) - (item.offsetHeight + (header_height + 15))) {
+					block.style.cssText = "position:relative;";
+					item.style.cssText = "position:absolute;bottom:0;top:auto;left:0px;width:100%";
+				}
+			} else {
+				gotoRelative(item);
+			}
+		}
+	}
+	function gotoRelative(item) {
+		item.style.cssText = "position:relative;bottom:auto;top:0px;left:0px;";
+	}
+}
+
+if (!isMobile.any()) {
+	//custom_scroll();
+	/*
+	window.addEventListener('wheel', scroll_animate, {
+		capture: true,
+		passive: true
+	});
+	window.addEventListener('resize', custom_scroll, {
+		capture: true,
+		passive: true
+	});
+	*/
+}
+function custom_scroll(event) {
+	scr_body.style.overflow = 'hidden';
+	let window_height = window.innerHeight;
+	let custom_scroll_line = document.querySelector('._custom-scroll__line');
+	let custom_scroll_content_height = document.querySelector('.wrapper').offsetHeight;
+	let custom_cursor_height = Math.min(window_height, Math.round(window_height * (window_height / custom_scroll_content_height)));
+	if (custom_scroll_content_height > window_height) {
+		if (!custom_scroll_line) {
+			let custom_scroll = document.createElement('div');
+			custom_scroll_line = document.createElement('div');
+			custom_scroll.setAttribute('class', '_custom-scroll');
+			custom_scroll_line.setAttribute('class', '_custom-scroll__line');
+			custom_scroll.appendChild(custom_scroll_line);
+			scr_body.appendChild(custom_scroll);
+		}
+		custom_scroll_line.style.height = custom_cursor_height + 'px';
+	}
+}
+
+let new_pos = pageYOffset;
+function scroll_animate(event) {
+	let window_height = window.innerHeight;
+	let content_height = document.querySelector('.wrapper').offsetHeight;
+	let start_position = pageYOffset;
+	let pos_add = 100;
+
+	if (event.keyCode == 40 || event.keyCode == 34 || event.deltaX > 0 || event.deltaY < 0) {
+		new_pos = new_pos - pos_add;
+	} else if (event.keyCode == 38 || event.keyCode == 33 || event.deltaX < 0 || event.deltaY > 0) {
+		new_pos = new_pos + pos_add;
+	}
+	if (new_pos > (content_height - window_height)) new_pos = content_height - window_height;
+	if (new_pos < 0) new_pos = 0;
+
+	if (scrolling) {
+		scrolling = false;
+		_goto(new_pos, 1000);
+
+		let scr_pause = 100;
+		if (navigator.appVersion.indexOf("Mac") != -1) {
+			scr_pause = scr_pause * 2;
+		};
+		setTimeout(function () {
+			scrolling = true;
+			_goto(new_pos, 1000);
+		}, scr_pause);
+	}
+	//If native scroll
+	//disableScroll();
 }
